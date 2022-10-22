@@ -107,104 +107,17 @@
                     </li>
                   </ul>
                   <ul class="brands-list">
-                    <li class="brands-item">
-                      <h4>PC</h4>
+                    <li
+                      class="brands-item"
+                      v-for="item in categoryDropdownSubmenu"
+                    >
+                      <h4>{{ item.title }}</h4>
                       <ul class="brand-list">
-                        <li class="brand-list-item">
-                          <router-link to="/">CPU</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Graphic Card</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Mainboard</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">RAM</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Case</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">SSD</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">HDD</router-link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="brands-item">
-                      <h4>Mobile</h4>
-                      <ul class="brand-list">
-                        <li class="brand-list-item">
-                          <router-link to="/">Apple</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Samsung</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Xiaomi</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Oppo</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Vivo</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Asus</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Google</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Sony</router-link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="brands-item">
-                      <h4>Laptop</h4>
-                      <ul class="brand-list">
-                        <li class="brand-list-item">
-                          <router-link to="/">Asus</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">MSI</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Gigabyte</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Xiaomi</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Acer</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Apple</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Google</router-link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="brands-item">
-                      <h4>Accessories</h4>
-                      <ul class="brand-list">
-                        <li class="brand-list-item">
-                          <router-link to="/">Cables</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Power Strip</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Surge Protector</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Bag Smart</router-link>
-                        </li>
-                        <li class="brand-list-item">
-                          <router-link to="/">Others</router-link>
+                        <li
+                          class="brand-list-item"
+                          v-for="subItem in item.subItems"
+                        >
+                          <router-link to="/">{{ subItem }}</router-link>
                         </li>
                       </ul>
                     </li>
@@ -218,17 +131,23 @@
         </ul>
       </div>
     </nav>
-    <form class="header-overlay" autocomplete="off">
-      <h3 class="header-title">Explore and Find everything you need!</h3>
-      <p class="header-subtitle">over <span>7,500,000</span> stuff</p>
-      <input
-        :class="setSearchInputStyle"
-        type="text"
-        name="search"
-        id="search-product-input"
-        placeholder="find something..."
-        v-model="searchValue"
-      />
+    <form
+      class="header-overlay"
+      autocomplete="off"
+      @click="isCategorySubmenuOpen = false"
+    >
+      <div class="container">
+        <h3 class="header-title">Explore and Find everything you need!</h3>
+        <p class="header-subtitle">over <span>7,500,000</span> stuff</p>
+        <input
+          :class="setSearchInputStyle"
+          type="text"
+          name="search"
+          id="search-product-input"
+          placeholder="find something..."
+          v-model="searchValue"
+        />
+      </div>
     </form>
     <Transition name="category-submenu">
       <section
@@ -321,4 +240,46 @@ onMounted(() => {
   window.addEventListener("resize", checkUserDevice);
 });
 checkUserDevice();
+
+const categoryDropdownSubmenu = ref([
+  {
+    title: "PC",
+    subItems: [
+      "CPU",
+      "Graphic Card",
+      "Main Board",
+      "RAM",
+      "Case",
+      "SSD",
+      "HDD",
+    ],
+  },
+  {
+    title: "Mobile",
+    subItems: [
+      "Apple",
+      "Samsung",
+      "Xiaomi",
+      "Oppo",
+      "Vivo",
+      "Asus",
+      "Google",
+      "Sony",
+    ],
+  },
+  {
+    title: "Laptop",
+    subItems: ["Asus", "MSI", "Gigabyte", "Xiaomi", "Acer", "Apple", "Google"],
+  },
+  {
+    title: "Accessories",
+    subItems: [
+      "Cables",
+      "Power Strip",
+      "Surge Protector",
+      "Bag Smart",
+      "Others",
+    ],
+  },
+]);
 </script>

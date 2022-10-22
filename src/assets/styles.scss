@@ -19,6 +19,7 @@ body {
 }
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 // global styles
@@ -156,6 +157,19 @@ header {
       background-color: transparent;
       &.bg-white {
         background-color: var(--white);
+      }
+    }
+
+    @media (min-width: 640px) {
+      .header-title {
+        font-size: 28px;
+      }
+      .header-subtitle {
+        margin: 10px 0;
+        font-size: 20px;
+      }
+      input {
+        max-width: 300px;
       }
     }
   }
