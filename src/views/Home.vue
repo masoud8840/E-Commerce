@@ -7,6 +7,25 @@
       <p>{{ item.subtitle }}</p>
     </article>
   </section>
+
+  <section class="our-categories">
+    <div class="container">
+      <h3 class="our-categories-title">Our Categories</h3>
+      <p class="our-categories-subtitle">Here you can find almost everything</p>
+      <article>
+        <section
+          v-for="section in ourCategories"
+          :class="`category-item category-${section.sectionClass}`"
+        >
+          <img :src="`/images/Home/${section.img}.svg`" :alt="section.img" />
+          <div class="category-item-overlay">
+            <h4 class="category-item-title">{{ section.title }}</h4>
+            <p class="category-item-subtitle">{{ section.subtitle }}</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </section>
 </template>
 
 <script setup>
@@ -27,6 +46,39 @@ const subheaderItems = ref([
     imgUrl: "/images/Guarantee.svg",
     title: "Guarantee",
     subtitle: "8 Days guarantee",
+  },
+]);
+
+const ourCategories = ref([
+  {
+    sectionClass: "supermarket dark",
+    img: "Supermarket",
+    title: "Kitchen Essentials",
+    subtitle: "access fresh foods",
+  },
+  {
+    sectionClass: "car dark",
+    img: "Car",
+    title: "Car",
+    subtitle: "find any kind of in-car and out-car stuff",
+  },
+  {
+    sectionClass: "cosmetic",
+    img: "Cosmetics",
+    title: "Cosmetics",
+    subtitle: "feel better and fresh",
+  },
+  {
+    sectionClass: "tv dark",
+    img: "TV",
+    title: "TVs",
+    subtitle: "have everything on board",
+  },
+  {
+    sectionClass: "technology",
+    img: "Technology",
+    title: "Technology",
+    subtitle: "from smart watch to apple macbook",
   },
 ]);
 </script>
