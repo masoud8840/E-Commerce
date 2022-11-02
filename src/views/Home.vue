@@ -31,8 +31,23 @@
       <router-link to="/">See More</router-link>
     </header>
     <article class="discount-list">
-      <product-item></product-item>
+      <product-item
+        v-for="(prod, index) in discountProducts"
+        :key="index"
+        :product-name="prod.name"
+        :product-description="prod.description"
+        :product-img="prod.img"
+        :product-rating="prod.rating"
+        :product-review="prod.review"
+        :product-last-price="prod.lastPrice"
+        :product-new-price="prod.newPrice"
+        :is-liked="prod.isLiked"
+        :is-bookmarked="prod.isBookmarked"
+      ></product-item>
     </article>
+    <footer class="discount-arrows">
+      
+    </footer>
   </section>
 </template>
 
@@ -88,6 +103,53 @@ const ourCategories = ref([
     img: "Technology",
     title: "Technology",
     subtitle: "from smart watch to apple macbook",
+  },
+]);
+
+const discountProducts = ref([
+  {
+    name: "Gigabyte AX-370 Gaming K7",
+    description: "GIGA-BYTE Technology Co",
+    rating: 4.5,
+    review: 14,
+    lastPrice: 189,
+    newPrice: 102,
+    img: "Car.svg",
+    isBookmarked: false,
+    isLiked: false,
+  },
+  {
+    name: "Gigabyte AX-370 Gaming K7",
+    description: "GIGA-BYTE Technology Co",
+    rating: 4.5,
+    review: 14,
+    lastPrice: 189,
+    newPrice: 102,
+    img: "Car.svg",
+    isBookmarked: false,
+    isLiked: false,
+  },
+  {
+    name: "Gigabyte AX-370 Gaming K7",
+    description: "GIGA-BYTE Technology Co",
+    rating: 4.5,
+    review: 14,
+    lastPrice: 189,
+    newPrice: 102,
+    img: "Car.svg",
+    isBookmarked: true,
+    isLiked: false,
+  },
+  {
+    name: "Gigabyte AX-370 Gaming K7",
+    description: "GIGA-BYTE Technology Co",
+    rating: 4.2,
+    review: 10,
+    lastPrice: 95,
+    newPrice: 58,
+    img: "Supermarket.svg",
+    isBookmarked: true,
+    isLiked: true,
   },
 ]);
 </script>
