@@ -8,28 +8,37 @@
     </article>
   </section>
 
-  <section class="our-categories">
-    <div class="container">
-      <h3 class="our-categories-title">Our Categories</h3>
-      <p class="our-categories-subtitle">Here you can find almost everything</p>
-      <article>
-        <section
-          v-for="section in ourCategories"
-          :class="`category-item category-${section.sectionClass}`"
-        >
-          <img :src="`/images/Home/${section.img}.svg`" :alt="section.img" />
-          <div class="category-item-overlay">
-            <h4 class="category-item-title">{{ section.title }}</h4>
-            <p class="category-item-subtitle">{{ section.subtitle }}</p>
-          </div>
-        </section>
-      </article>
-    </div>
+  <section class="our-categories container">
+    <h3 class="our-categories-title">Our Categories</h3>
+    <p class="our-categories-subtitle">Here you can find almost everything</p>
+    <article>
+      <section
+        v-for="section in ourCategories"
+        :class="`category-item category-${section.sectionClass}`"
+      >
+        <img :src="`/images/Home/${section.img}.svg`" :alt="section.img" />
+        <div class="category-item-overlay">
+          <h4 class="category-item-title">{{ section.title }}</h4>
+          <p class="category-item-subtitle">{{ section.subtitle }}</p>
+        </div>
+      </section>
+    </article>
+  </section>
+
+  <section class="discount container">
+    <header>
+      <h3 class="discount-title">Discount</h3>
+      <router-link to="/">See More</router-link>
+    </header>
+    <article class="discount-list">
+      <product-item></product-item>
+    </article>
   </section>
 </template>
 
 <script setup>
 import TheNavigation from "../components/layout/TheNavigation.vue";
+import ProductItem from "../components/UI/ProductItem.vue";
 import { ref } from "vue";
 const subheaderItems = ref([
   {
@@ -53,7 +62,7 @@ const ourCategories = ref([
   {
     sectionClass: "supermarket dark",
     img: "Supermarket",
-    title: "Kitchen Essentials",
+    title: "Cooking Essentials",
     subtitle: "access fresh foods",
   },
   {

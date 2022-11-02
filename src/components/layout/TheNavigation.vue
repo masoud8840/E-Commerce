@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="main-header">
     <nav>
       <div class="container">
         <router-link to="/" class="brand">Boundry</router-link>

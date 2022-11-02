@@ -13,6 +13,7 @@
   // --fromGradient: #ddd6f3;
   --fromGradient: #eaafc8;
   --toGradient: #faaca8;
+  --productCardBorder: #e2e2e2;
 }
 body {
   background: var(--white);
@@ -43,7 +44,7 @@ input[name="search"] {
     }
   }
 }
-header {
+header.main-header {
   background-color: #fff200;
   height: 90vh;
   background: transparent url("/images/HeaderBackground.jpg") center/cover
@@ -444,7 +445,7 @@ header {
 }
 
 .our-categories {
-  margin: 75px 0;
+  margin: 75px auto;
   h3.our-categories-title {
     font-size: 32px;
     line-height: 48px;
@@ -549,6 +550,160 @@ header {
         }
         &.category-cosmetic {
           width: 498px;
+        }
+      }
+    }
+  }
+}
+// Discounts
+.discount {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 25px;
+    h3 {
+      font-size: 24px;
+      line-height: 36px;
+      color: var(--text);
+    }
+    a {
+      color: var(--lightText);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  article.product-card {
+    border: 1px solid var(--productCardBorder);
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    &:hover {
+      box-shadow: 0 5px 10px 1px var(--productCardBorder);
+    }
+    img.product-img {
+      width: 280px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 9px 9px 0 0;
+    }
+    .product-detail {
+      padding: 10px;
+      .product-title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: var(--text);
+      }
+      .product-description {
+        font-size: 14px;
+        line-height: 21px;
+        color: var(--lightText);
+      }
+      .product-rating-price {
+        display: flex;
+        margin-top: 30px;
+        align-items: center;
+        .product-rating {
+          display: inherit;
+          align-items: center;
+          background-color: rgba($color: #565656, $alpha: 0.85);
+          padding: 5px;
+          border-radius: 3px;
+          span {
+            color: var(--white);
+            margin-left: 5px;
+            line-height: 21px;
+          }
+        }
+        span.review-amount {
+          color: var(--semiLightText);
+          margin-left: 10px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .product-price {
+          margin-left: auto;
+          span {
+            line-height: 21px;
+            &.last-price {
+              margin-right: 10px;
+              color: var(--lightText);
+              text-decoration: line-through;
+            }
+            &.new-price {
+              color: var(--text);
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+
+    @keyframes appearAccessibilityBtns {
+      0% {
+        transform: translateY(50px);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    .product-overlay {
+      background: rgba($color: #000000, $alpha: 0.4);
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 9px 9px 0 0;
+      width: 280px;
+      height: 260px;
+      display: flex;
+      align-items: end;
+      justify-content: end;
+      padding: 10px;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      overflow: hidden;
+      button {
+        background-color: var(--white);
+        border: 0;
+        border-radius: 50px;
+        padding: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        pointer-events: none;
+        transform: translateY(50px);
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+      &:hover {
+        opacity: 1;
+        button {
+          pointer-events: all;
+          &:nth-child(1) {
+            transition-delay: 0.3s;
+            animation: appearAccessibilityBtns 0.35s 0.3s forwards;
+          }
+          &:nth-child(2) {
+            animation: appearAccessibilityBtns 0.35s 0.15s forwards;
+            transition-delay: 0.15s;
+          }
+          &:nth-child(3) {
+            animation: appearAccessibilityBtns 0.35s 0s forwards;
+            transition-delay: 0s;
+          }
         }
       }
     }
