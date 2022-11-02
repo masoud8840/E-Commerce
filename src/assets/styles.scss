@@ -557,7 +557,17 @@ header.main-header {
 }
 // Discounts
 .discount {
-  margin-bottom: 75px;
+  margin-bottom: 150px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -75px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(120deg, var(--fromGradient), var(--toGradient));
+  }
   header {
     display: flex;
     justify-content: space-between;
@@ -718,6 +728,25 @@ header.main-header {
             animation: appearAccessibilityBtns 0.4s 0s forwards;
             transition-delay: 0s;
           }
+        }
+      }
+    }
+  }
+
+  footer.discount-arrows {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: 15px;
+    gap: 5px;
+    button {
+      display: flex;
+      border: 0;
+      cursor: pointer;
+      border-radius: 3px;
+      &:hover {
+        svg rect {
+          fill: #e9e9e9;
         }
       }
     }
