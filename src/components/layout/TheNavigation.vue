@@ -1,6 +1,6 @@
 <template>
   <header class="main-header">
-    <nav>
+    <nav :class="setMenuStyleAndToggleSearchAndMenuOff">
       <div class="container">
         <router-link to="/" class="brand">Boundry</router-link>
         <Transition name="search-input">
@@ -12,14 +12,17 @@
             v-model="searchValue"
             v-show="isSearchInputVisible"
             ref="searchInput"
+            class="nav-search-input"
           />
         </Transition>
         <ul>
-          <li><Search @click="toggleSearchInput" /></li>
+          <li>
+            <Search class="nav-search" @click="toggleSearchInput" />
+          </li>
           <li>
             <Category
               @click="toggleCategorySubmenu"
-              class="category-submenu-btn"
+              class="category-submenu-btn nav-category"
             />
             <transition name="dropdown-category-submenu">
               <div
@@ -126,8 +129,8 @@
               </div>
             </transition>
           </li>
-          <li><Cart /></li>
-          <li><User /></li>
+          <li><Cart class="nav-cart" /></li>
+          <li><User class="nav-user" /></li>
         </ul>
       </div>
     </nav>
@@ -192,7 +195,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 // Icons
 import Search from "../icons/Search.vue";
 import Category from "../icons/Category.vue";
@@ -238,9 +241,20 @@ function checkUserDevice() {
 }
 onMounted(() => {
   window.addEventListener("resize", checkUserDevice);
+  window.addEventListener("scroll", changeNavClass);
 });
 checkUserDevice();
 
+let screenScrollValue = ref(null);
+function changeNavClass() {
+  screenScrollValue.value = window.scrollY;
+  isSearchInputVisible.value = false;
+  isCategorySubmenuOpen.value = false;
+}
+const setMenuStyleAndToggleSearchAndMenuOff = computed(() => {
+  if (screenScrollValue.value < 10) return "";
+  else return "fade-in";
+});
 const categoryDropdownSubmenu = ref([
   {
     title: "PC",
