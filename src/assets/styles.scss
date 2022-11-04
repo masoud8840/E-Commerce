@@ -79,6 +79,14 @@ header.main-header {
           fill: var(--text);
         }
       }
+      .category-submenu-desktop {
+        top: 75px;
+      }
+      .dropdown-category-submenu-enter-from,
+      .dropdown-category-submenu-leave-to {
+        top: 45px;
+        opacity: 0;
+      }
     }
     .container {
       display: flex;
@@ -262,13 +270,14 @@ header.main-header {
   }
   .category-submenu-desktop {
     position: absolute;
-    top: 75px;
+    top: 90px;
     left: 0;
     width: 100%;
     background-color: rgba($color: #fff, $alpha: 0.7);
     backdrop-filter: blur(1.5px);
     z-index: -1;
     padding: 30px 0;
+
     .container {
       height: initial;
       display: grid;
@@ -398,7 +407,7 @@ header.main-header {
   }
   .dropdown-category-submenu-enter-from,
   .dropdown-category-submenu-leave-to {
-    top: 30px;
+    top: 60px;
     opacity: 0;
   }
   .dropdown-category-submenu-enter-active,
