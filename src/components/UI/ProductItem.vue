@@ -23,9 +23,13 @@
       </section>
     </section>
     <section class="product-overlay">
-      <button :class="{ active: props.isLiked }"><heart /></button>
+      <button :class="{ active: props.isLiked }" @click="likeProduct">
+        <heart />
+      </button>
       <button><share /></button>
-      <button :class="{ active: props.isBookmarked }"><bookmark /></button>
+      <button :class="{ active: props.isBookmarked }" @click="bookmarkProduct">
+        <bookmark />
+      </button>
     </section>
   </article>
 </template>
@@ -35,6 +39,7 @@ import heart from "../icons/ProductItem/Heart.vue";
 import share from "../icons/ProductItem/Share.vue";
 import bookmark from "../icons/ProductItem/Bookmark.vue";
 const props = defineProps([
+  "productId",
   "productName",
   "productDescription",
   "productRating",
@@ -45,4 +50,13 @@ const props = defineProps([
   "isLiked",
   "isBookmarked",
 ]);
+
+const emits = defineEmits(["onProductLike", "onProductBookmark"]);
+
+function likeProduct() {
+  emits("onProductLike", props.productId);
+}
+function bookmarkProduct() {
+  emits("onProductBookmark", props.productId);
+}
 </script>

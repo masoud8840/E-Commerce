@@ -34,6 +34,7 @@
       <product-item
         v-for="(prod, index) in discountProducts"
         :key="index"
+        :product-id="prod.ID"
         :product-name="prod.name"
         :product-description="prod.description"
         :product-img="prod.img"
@@ -43,6 +44,8 @@
         :product-new-price="prod.newPrice"
         :is-liked="prod.isLiked"
         :is-bookmarked="prod.isBookmarked"
+        @on-product-like="likeProduct"
+        @on-product-bookmark="bookmarkProduct"
       ></product-item>
     </article>
     <footer class="discount-arrows">
@@ -115,6 +118,7 @@ const ourCategories = ref([
 
 const discountProducts = ref([
   {
+    ID: 1,
     name: "Gigabyte AX-370 Gaming K7",
     description: "GIGA-BYTE Technology Co",
     rating: 4.5,
@@ -126,6 +130,7 @@ const discountProducts = ref([
     isLiked: false,
   },
   {
+    ID: 2,
     name: "Gigabyte AX-370 Gaming K7",
     description: "GIGA-BYTE Technology Co",
     rating: 4.5,
@@ -137,6 +142,7 @@ const discountProducts = ref([
     isLiked: false,
   },
   {
+    ID: 3,
     name: "Gigabyte AX-370 Gaming K7",
     description: "GIGA-BYTE Technology Co",
     rating: 4.5,
@@ -148,6 +154,7 @@ const discountProducts = ref([
     isLiked: false,
   },
   {
+    ID: 4,
     name: "Gigabyte AX-370 Gaming K7",
     description: "GIGA-BYTE Technology Co",
     rating: 4.2,
@@ -159,4 +166,17 @@ const discountProducts = ref([
     isLiked: true,
   },
 ]);
+
+function likeProduct(prodID) {
+  // we don't have api yet, so will iterate though all objects
+  discountProducts.value.map((prod) => {
+    if (prod.ID === prodID) prod.isLiked = !prod.isLiked;
+  });
+}
+function bookmarkProduct(prodID) {
+  // we don't have api yet, so will iterate though all objects
+  discountProducts.value.map((prod) => {
+    if (prod.ID === prodID) prod.isBookmarked = !prod.isBookmarked;
+  });
+}
 </script>
