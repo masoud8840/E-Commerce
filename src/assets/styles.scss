@@ -621,11 +621,12 @@ header.main-header {
   }
 
   // PRODUCT ITEM.vue
-  article.product-card {
+  .product-card {
     border: 1px solid var(--productCardBorder);
     border-radius: 10px;
     display: inline-block;
     position: relative;
+    text-decoration: none;
     transition: box-shadow 0.15s;
     &:hover {
       box-shadow: 0 5px 10px 1px var(--productCardBorder);
@@ -638,6 +639,10 @@ header.main-header {
     }
     .product-detail {
       padding: 10px;
+      // router-link
+      a {
+        text-decoration: none;
+      }
       .product-title {
         font-weight: 500;
         font-size: 16px;

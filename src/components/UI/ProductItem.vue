@@ -6,8 +6,12 @@
       alt="product-img"
     />
     <section class="product-detail">
-      <h4 class="product-title">{{ props.productName }}</h4>
-      <p class="product-description">{{ props.productDescription }}</p>
+      <router-link :to="`/product/${props.productName}`">
+        <h4 class="product-title">{{ props.productName }}</h4>
+      </router-link>
+      <router-link :to="`company/${props.creatorCompany}`">
+        <p class="product-description">{{ props.productDescription }}</p>
+      </router-link>
       <section class="product-rating-price">
         <section class="product-rating">
           <img class="star-img" src="/images/common/Star.svg" alt="rating" />
@@ -26,7 +30,7 @@
       <button :class="{ active: props.isLiked }" @click="likeProduct">
         <heart />
       </button>
-      <button><share /></button>
+      <button @click="shareProduct"><share /></button>
       <button :class="{ active: props.isBookmarked }" @click="bookmarkProduct">
         <bookmark />
       </button>
@@ -49,6 +53,7 @@ const props = defineProps([
   "productImg",
   "isLiked",
   "isBookmarked",
+  "creatorCompany",
 ]);
 
 const emits = defineEmits(["onProductLike", "onProductBookmark"]);
@@ -58,5 +63,20 @@ function likeProduct() {
 }
 function bookmarkProduct() {
   emits("onProductBookmark", props.productId);
+}
+// will edit later
+function shareProduct() {
+  const shareOptions = {
+    url: "https://soft98.ir",
+    title: "google.com",
+    text: "Here is the google site",
+  };
+  if (navigator.share) {
+    navigator.share(shareOptions).then(() => {
+      console.log("Thanks for Sharing.");
+    });
+  } else {
+    console.log("you don't have share ability");
+  }
 }
 </script>

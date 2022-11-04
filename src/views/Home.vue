@@ -44,6 +44,7 @@
         :product-new-price="prod.newPrice"
         :is-liked="prod.isLiked"
         :is-bookmarked="prod.isBookmarked"
+        :creator-company="prod.creatorCompany"
         @on-product-like="likeProduct"
         @on-product-bookmark="bookmarkProduct"
       ></product-item>
@@ -128,6 +129,7 @@ const discountProducts = ref([
     img: "Car.svg",
     isBookmarked: false,
     isLiked: false,
+    creatorCompany: "gigabyte-technology-co",
   },
   {
     ID: 2,
@@ -140,6 +142,7 @@ const discountProducts = ref([
     img: "Car.svg",
     isBookmarked: false,
     isLiked: false,
+    creatorCompany: "gigabyte-technology-co",
   },
   {
     ID: 3,
@@ -152,6 +155,7 @@ const discountProducts = ref([
     img: "Car.svg",
     isBookmarked: true,
     isLiked: false,
+    creatorCompany: "gigabyte-technology-co",
   },
   {
     ID: 4,
@@ -164,6 +168,7 @@ const discountProducts = ref([
     img: "Supermarket.svg",
     isBookmarked: true,
     isLiked: true,
+    creatorCompany: "gigabyte-technology-co",
   },
 ]);
 
