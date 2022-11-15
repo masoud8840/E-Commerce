@@ -9,9 +9,11 @@
   </section>
 
   <section class="our-categories container">
-    <h3 class="our-categories-title">Our Categories</h3>
-    <p class="our-categories-subtitle">Here you can find almost everything</p>
-    <article>
+    <header>
+      <h3 class="our-categories-title">Our Categories</h3>
+      <p class="our-categories-subtitle">Here you can find almost everything</p>
+    </header>
+    <article class="main-content">
       <section
         v-for="section in ourCategories"
         :class="`category-item category-${section.sectionClass}`"
@@ -58,6 +60,46 @@
       </button>
     </footer>
   </section>
+
+  <section class="some-stuff container">
+    <header>
+      <h3 class="some-stuff-title">Some Of Our Stuff</h3>
+      <p class="some-stuff-subtitle">Take a quick look at our stuff</p>
+      <nav class="container">
+        <ul>
+          <li v-for="el in navElements">
+            <button
+              @click="changeNavbarUnderlineStyle(el.shorthand)"
+              class="nav-btn"
+              :class="{ active: navActiveElem === el.shorthand }"
+            >
+              {{ el.text }}
+            </button>
+          </li>
+        </ul>
+        <!-- <div class="underline" :style="getNavbarUnderlineStyle"></div> -->
+      </nav>
+    </header>
+    <article class="some-stuff-list main-content">
+      <product-item
+        v-for="(prod, index) in discountProducts"
+        :key="index"
+        :product-id="prod.ID"
+        :product-name="prod.name"
+        :product-description="prod.description"
+        :product-img="prod.img"
+        :product-rating="prod.rating"
+        :product-review="prod.review"
+        :product-last-price="prod.lastPrice"
+        :product-new-price="prod.newPrice"
+        :is-liked="prod.isLiked"
+        :is-bookmarked="prod.isBookmarked"
+        :creator-company="prod.creatorCompany"
+        @on-product-like="likeProduct"
+        @on-product-bookmark="bookmarkProduct"
+      ></product-item>
+    </article>
+  </section>
 </template>
 
 <script setup>
@@ -66,6 +108,7 @@ import ProductItem from "../components/UI/ProductItem.vue";
 import ArrowLeft from "../components/icons/Common/ArrowLeft.vue";
 import ArrowRight from "../components/icons/Common/ArrowRight.vue";
 import { ref } from "vue";
+
 const subheaderItems = ref([
   {
     imgUrl: "/images/Reliable.svg",
@@ -170,6 +213,32 @@ const discountProducts = ref([
     isLiked: true,
     creatorCompany: "gigabyte-technology-co",
   },
+  {
+    ID: 5,
+    name: "Gigabyte AX-370 Gaming K7",
+    description: "GIGA-BYTE Technology Co",
+    rating: 4.2,
+    review: 10,
+    lastPrice: 95,
+    newPrice: 58,
+    img: "Supermarket.svg",
+    isBookmarked: true,
+    isLiked: true,
+    creatorCompany: "gigabyte-technology-co",
+  },
+  {
+    ID: 6,
+    name: "Gigabyte AX-370 Gaming K7",
+    description: "GIGA-BYTE Technology Co",
+    rating: 4.2,
+    review: 10,
+    lastPrice: 95,
+    newPrice: 58,
+    img: "Supermarket.svg",
+    isBookmarked: true,
+    isLiked: true,
+    creatorCompany: "gigabyte-technology-co",
+  },
 ]);
 
 function likeProduct(prodID) {
@@ -183,5 +252,38 @@ function bookmarkProduct(prodID) {
   discountProducts.value.map((prod) => {
     if (prod.ID === prodID) prod.isBookmarked = !prod.isBookmarked;
   });
+}
+
+// some of our stuff
+const navActiveElem = ref("electronics");
+const navElements = ref([
+  {
+    text: "Electronics",
+    shorthand: "electronics",
+  },
+  {
+    text: "Home & Kitchen",
+    shorthand: "h&k",
+  },
+  {
+    text: "Car & Tools",
+    shorthand: "c&t",
+  },
+  {
+    text: "Health & Beauty",
+    shorthand: "h&b",
+  },
+  {
+    text: "Fashion & Clothing",
+    shorthand: "f&c",
+  },
+  {
+    text: "Books & Stationary",
+    shorthand: "b&s",
+  },
+]);
+
+function changeNavbarUnderlineStyle(currentTab) {
+  navActiveElem.value = currentTab;
 }
 </script>
