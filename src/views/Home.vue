@@ -1,5 +1,24 @@
 <template>
-  <the-navigation></the-navigation>
+  <header class="main-header">
+    <form
+      class="header-overlay"
+      autocomplete="off"
+      @click="isCategorySubmenuOpen = false"
+    >
+      <div class="container">
+        <h3 class="header-title">Explore and Find everything you need!</h3>
+        <p class="header-subtitle">over <span>7,500,000</span> stuff</p>
+        <input
+          :class="setSearchInputStyle"
+          type="text"
+          name="search"
+          id="search-product-input"
+          placeholder="find something..."
+          v-model="searchValue"
+        />
+      </div>
+    </form>
+  </header>
   <section class="subheader container">
     <article v-for="item in subheaderItems">
       <img :src="item.imgUrl" :alt="item.title" />

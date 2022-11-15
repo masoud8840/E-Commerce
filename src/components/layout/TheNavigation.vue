@@ -1,5 +1,5 @@
 <template>
-  <header class="main-header">
+  <header class="app-header">
     <nav :class="setMenuStyleAndToggleSearchAndMenuOff">
       <div class="container">
         <router-link to="/" class="brand">Boundry</router-link>
@@ -134,64 +134,46 @@
         </ul>
       </div>
     </nav>
-    <form
-      class="header-overlay"
-      autocomplete="off"
-      @click="isCategorySubmenuOpen = false"
-    >
-      <div class="container">
-        <h3 class="header-title">Explore and Find everything you need!</h3>
-        <p class="header-subtitle">over <span>7,500,000</span> stuff</p>
-        <input
-          :class="setSearchInputStyle"
-          type="text"
-          name="search"
-          id="search-product-input"
-          placeholder="find something..."
-          v-model="searchValue"
-        />
-      </div>
-    </form>
-    <Transition name="category-submenu">
-      <section
-        class="category-submenu-mobile"
-        v-if="isCategorySubmenuOpen && isOnMobile"
-      >
-        <h4>Category:</h4>
-        <Close class="close-btn" @click="toggleCategorySubmenu" />
-        <article>
-          <router-link to="/" class="electronics">
-            <Electronics />
-            <p>Electronics</p>
-          </router-link>
-          <router-link to="/" class="electronics">
-            <Home />
-            <p>Home & Kitchen</p>
-          </router-link>
-          <router-link to="/" class="electronics">
-            <Car />
-            <p>Car & Tools</p>
-          </router-link>
-          <router-link to="/" class="electronics">
-            <Health />
-            <p>Health & Beauty</p>
-          </router-link>
-          <router-link to="/" class="electronics">
-            <Fashion />
-            <p>Fashion & Clothing</p>
-          </router-link>
-          <router-link to="/" class="electronics">
-            <Book />
-            <p>Books & Stationary</p>
-          </router-link>
-          <router-link to="/" class="electronics">
-            <Kid />
-            <p>Kids & Babes</p>
-          </router-link>
-        </article>
-      </section>
-    </Transition>
   </header>
+  <Transition name="category-submenu">
+    <section
+      class="category-submenu-mobile"
+      v-if="isCategorySubmenuOpen && isOnMobile"
+    >
+      <h4>Category:</h4>
+      <Close class="close-btn" @click="toggleCategorySubmenu" />
+      <article>
+        <router-link to="/" class="electronics">
+          <Electronics />
+          <p>Electronics</p>
+        </router-link>
+        <router-link to="/" class="electronics">
+          <Home />
+          <p>Home & Kitchen</p>
+        </router-link>
+        <router-link to="/" class="electronics">
+          <Car />
+          <p>Car & Tools</p>
+        </router-link>
+        <router-link to="/" class="electronics">
+          <Health />
+          <p>Health & Beauty</p>
+        </router-link>
+        <router-link to="/" class="electronics">
+          <Fashion />
+          <p>Fashion & Clothing</p>
+        </router-link>
+        <router-link to="/" class="electronics">
+          <Book />
+          <p>Books & Stationary</p>
+        </router-link>
+        <router-link to="/" class="electronics">
+          <Kid />
+          <p>Kids & Babes</p>
+        </router-link>
+      </article>
+    </section>
+  </Transition>
 </template>
 
 <script setup>
