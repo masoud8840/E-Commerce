@@ -129,8 +129,12 @@
               </div>
             </transition>
           </li>
-          <li><Cart class="nav-cart" /></li>
-          <li><User class="nav-user" /></li>
+          <li>
+            <router-link to="/cart"><Cart class="nav-cart" /></router-link>
+          </li>
+          <li>
+            <router-link to="login"><User class="nav-user" /></router-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -177,7 +181,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
 // Icons
 import Search from "../icons/Search.vue";
 import Category from "../icons/Category.vue";
@@ -227,6 +232,7 @@ onMounted(() => {
 });
 checkUserDevice();
 
+const route = useRoute();
 let screenScrollValue = ref(null);
 function changeNavClass() {
   screenScrollValue.value = window.scrollY;
@@ -234,7 +240,7 @@ function changeNavClass() {
   isCategorySubmenuOpen.value = false;
 }
 const setMenuStyleAndToggleSearchAndMenuOff = computed(() => {
-  if (screenScrollValue.value < 10) return "";
+  if (screenScrollValue.value < 10 && route.path === "/") return "";
   else return "fade-in";
 });
 const categoryDropdownSubmenu = ref([

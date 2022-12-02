@@ -122,7 +122,6 @@
 </template>
 
 <script setup>
-import TheNavigation from "../components/layout/TheNavigation.vue";
 import ProductItem from "../components/UI/ProductItem.vue";
 import ArrowLeft from "../components/icons/Common/ArrowLeft.vue";
 import ArrowRight from "../components/icons/Common/ArrowRight.vue";
