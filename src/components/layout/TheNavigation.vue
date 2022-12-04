@@ -2,7 +2,7 @@
   <header class="app-header">
     <nav :class="setMenuStyleAndToggleSearchAndMenuOff">
       <div class="container">
-        <router-link to="/" class="brand">Boundry</router-link>
+        <router-link :to="{ name: 'home' }" class="brand">Boundry</router-link>
         <Transition name="search-input">
           <input
             type="text"
@@ -130,10 +130,14 @@
             </transition>
           </li>
           <li>
-            <router-link to="/cart"><Cart class="nav-cart" /></router-link>
+            <router-link :to="{ name: 'cart' }"
+              ><Cart class="nav-cart"
+            /></router-link>
           </li>
           <li>
-            <router-link to="login"><User class="nav-user" /></router-link>
+            <router-link :to="{ name: 'login' }"
+              ><User class="nav-user"
+            /></router-link>
           </li>
         </ul>
       </div>

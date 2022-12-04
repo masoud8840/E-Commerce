@@ -4,15 +4,25 @@
   box-sizing: border-box;
   font: 400 16px "Montserrat", "sans-serif";
 }
+// Mixins
+@mixin GradientText($color1, $color2) {
+  background: linear-gradient(120deg, $color1, $color2);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
 
 :root {
   --white: #fafafa;
   --text: #333333;
   --semiLightText: #565656;
   --lightText: #a9a9a9;
+
   // --fromGradient: #ddd6f3;
   --fromGradient: #eaafc8;
   --toGradient: #faaca8;
+  --purpleGradient: #a17fe0;
+  --blueGradient: #4286f4;
+
   --productCardBorder: #e2e2e2;
   --productCardBorderActive: #d9d9d9;
   --darkWhiteBg: #f1f1f1;
@@ -97,13 +107,8 @@ header.app-header {
       a.brand {
         text-decoration: none;
         font: 400 34px "Galada";
-        background: linear-gradient(
-          120deg,
-          var(--fromGradient),
-          var(--toGradient)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+
+        @include GradientText(var(--fromGradient), var(--toGradient));
       }
       input {
         margin: 0 15px;
@@ -259,13 +264,7 @@ header.app-header {
               box-shadow: -2px 4px 4px 0 rgba($color: #000000, $alpha: 0.1);
               background-color: var(--white);
               span {
-                background: linear-gradient(
-                  120deg,
-                  var(--fromGradient),
-                  var(--toGradient)
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                @include GradientText(var(--fromGradient), var(--toGradient));
               }
               svg {
                 filter: contrast(1);
@@ -392,13 +391,7 @@ header.main-header {
       color: var(--white);
       margin-bottom: 6px;
       span {
-        background: linear-gradient(
-          120deg,
-          var(--fromGradient),
-          var(--toGradient)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        @include GradientText(var(--fromGradient), var(--toGradient));
         font-weight: 500;
       }
     }
@@ -854,9 +847,9 @@ header.main-header {
   }
 }
 
-// Login.vue
+// Cart.vue
 .cart-view {
-  padding-top: 135px;
+  padding-top: 130px;
   background-color: var(--darkWhiteBg);
   min-height: 100vh;
   .empty-cart-screen {
@@ -1120,6 +1113,213 @@ header.main-header {
         border: 0;
         border-radius: 4px;
         box-shadow: 0px 3px 7px rgba(169, 169, 169, 0.25);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// Login.vue
+.login-view {
+  height: 100vh;
+  padding-top: 130px;
+  background-color: var(--darkWhiteBg);
+  .login-view-inner {
+    border-radius: 7px;
+    overflow: hidden;
+    background-color: var(--white);
+    display: flex;
+    .login-inner {
+      width: 218%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 75px 0 50px;
+
+      h3 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 48px;
+        @include GradientText(var(--purpleGradient), var(--blueGradient));
+      }
+      .login-with-social {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      span {
+        color: var(--semiLightText);
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 15px;
+        margin: 20px 0;
+        position: relative;
+        &::after,
+        &::before {
+          content: "";
+          position: absolute;
+          background-color: var(--productCardBorder);
+          width: 190px;
+          height: 1px;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 30px;
+        }
+        &::before {
+          left: 30px;
+        }
+      }
+      .login-form {
+        width: 100%;
+        max-width: 425px;
+        display: grid;
+        gap: 15px;
+        .input-group {
+          width: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          input:not([type="checkbox"]) {
+            width: 100%;
+            padding: 0 15px 0 54px;
+            height: 40px;
+            background: linear-gradient(120deg, #a17fe026, #4286f426);
+            border: 0;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 21px;
+            color: var(--text);
+            outline: none;
+            &::placeholder {
+              color: var(--lightText);
+              transition: padding 0.15s;
+            }
+            &:focus {
+              box-shadow: inset 0px 0px 5px rgba(169, 169, 169, 0.7);
+              &::placeholder {
+                padding-left: 10px;
+              }
+            }
+          }
+          img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 15px;
+          }
+          input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1px solid var(--light);
+            border-radius: 4px;
+            background-position: center;
+            background-size: cover;
+            &:checked {
+              appearance: none;
+              background: #4286f4
+                url("/public/images/Authentications/Check.svg") center/contain
+                no-repeat;
+              border: 0;
+            }
+          }
+          label,
+          a {
+            font-size: 12px;
+            line-height: 18px;
+            color: var(--text);
+          }
+          a {
+            margin-left: auto;
+            color: var(--lightText);
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          label {
+            padding-left: 10px;
+          }
+        }
+        button {
+          // --purpleGradient: #a17fe0;
+          // --blueGradient: #4286f4;
+          background: linear-gradient(120deg, #a17fe0bf, #4286f4bf);
+          padding: 10px 50px;
+          font-weight: 500;
+          font-size: 14;
+          line-height: 21px;
+          margin: 0 auto;
+          border-radius: 25px;
+          border: 0;
+          cursor: pointer;
+          margin-top: 50px;
+          color: var(--white);
+        }
+      }
+    }
+    .login-banner {
+      width: 100%;
+      max-width: 400px;
+      background: linear-gradient(120deg, #a17fe0bf, #4286f4bf);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 100px 50px;
+      gap: 20px;
+      position: relative;
+      // Square
+      &::after,
+      &::before {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background-color: rgba($color: #fafafa, $alpha: 0.17);
+        top: 10%;
+        right: 10%;
+        rotate: 45deg;
+        border-radius: 2px;
+      }
+      &::before {
+        top: 75%;
+        height: 45px;
+        right: 80%;
+        rotate: -45deg;
+      }
+      .circle {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        bottom: -32%;
+        right: -32%;
+        background-color: rgba($color: #fafafa, $alpha: 0.17);
+        border-radius: 100%;
+      }
+      h3 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 48px;
+      }
+      p {
+        line-height: 24px;
+      }
+      a {
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22.5px;
+        background-color: transparent;
+        border: 1px solid var(--white);
+        text-transform: uppercase;
+        color: var(--white);
+        padding: 10px 60px;
+        border-radius: 25px;
         cursor: pointer;
       }
     }
