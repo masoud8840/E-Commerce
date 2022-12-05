@@ -143,45 +143,6 @@
       </div>
     </nav>
   </header>
-  <Transition name="category-submenu">
-    <section
-      class="category-submenu-mobile"
-      v-if="isCategorySubmenuOpen && isOnMobile"
-    >
-      <h4>Category:</h4>
-      <Close class="close-btn" @click="toggleCategorySubmenu" />
-      <article>
-        <router-link to="/" class="electronics">
-          <Electronics />
-          <p>Electronics</p>
-        </router-link>
-        <router-link to="/" class="electronics">
-          <Home />
-          <p>Home & Kitchen</p>
-        </router-link>
-        <router-link to="/" class="electronics">
-          <Car />
-          <p>Car & Tools</p>
-        </router-link>
-        <router-link to="/" class="electronics">
-          <Health />
-          <p>Health & Beauty</p>
-        </router-link>
-        <router-link to="/" class="electronics">
-          <Fashion />
-          <p>Fashion & Clothing</p>
-        </router-link>
-        <router-link to="/" class="electronics">
-          <Book />
-          <p>Books & Stationary</p>
-        </router-link>
-        <router-link to="/" class="electronics">
-          <Kid />
-          <p>Kids & Babes</p>
-        </router-link>
-      </article>
-    </section>
-  </Transition>
 </template>
 
 <script setup>
