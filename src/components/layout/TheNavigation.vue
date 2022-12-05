@@ -153,7 +153,6 @@ import Search from "../icons/Search.vue";
 import Category from "../icons/Category.vue";
 import Cart from "../icons/Cart.vue";
 import User from "../icons/User.vue";
-import Close from "../icons/Close.vue";
 import Electronics from "../icons/NavbarCategory/Electronics.vue";
 import Kid from "../icons/NavbarCategory/Kid.vue";
 import Home from "../icons/NavbarCategory/Home.vue";

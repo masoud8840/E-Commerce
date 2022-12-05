@@ -783,7 +783,7 @@ header.main-header {
 
 // Cart.vue
 .cart-view {
-  padding-top: 130px;
+  padding: 130px 0 50px;
   background-color: var(--darkWhiteBg);
   min-height: 100vh;
   .empty-cart-screen {
@@ -1054,16 +1054,19 @@ header.main-header {
 }
 
 // Login.vue
-.login-view {
-  height: 100vh;
+.login-view,
+.signup-view {
+  min-height: 100vh;
   padding-top: 130px;
   background-color: var(--darkWhiteBg);
-  .login-view-inner {
+  .login-view-inner,
+  .signup-view-inner {
     border-radius: 7px;
     overflow: hidden;
     background-color: var(--white);
     display: flex;
-    .login-inner {
+    .login-inner,
+    .signup-inner {
       width: 218%;
       display: flex;
       flex-direction: column;
@@ -1077,7 +1080,8 @@ header.main-header {
         line-height: 48px;
         @include GradientText(var(--purpleGradient), var(--blueGradient));
       }
-      .login-with-social {
+      .login-with-social,
+      .signup-with-social {
         display: flex;
         gap: 10px;
         margin-top: 15px;
@@ -1104,7 +1108,8 @@ header.main-header {
           left: 30px;
         }
       }
-      .login-form {
+      .login-form,
+      .signup-form {
         width: 100%;
         max-width: 425px;
         display: grid;
@@ -1189,12 +1194,13 @@ header.main-header {
           border-radius: 25px;
           border: 0;
           cursor: pointer;
-          margin-top: 50px;
           color: var(--white);
+          margin-top: 15px;
         }
       }
     }
-    .login-banner {
+    .login-banner,
+    .signup-banner {
       width: 100%;
       max-width: 400px;
       background: linear-gradient(120deg, #a17fe0bf, #4286f4bf);
@@ -1214,7 +1220,7 @@ header.main-header {
         position: absolute;
         width: 24px;
         height: 24px;
-        background-color: rgba($color: #fafafa, $alpha: 0.17);
+        background-color: rgba($color: #fafafa, $alpha: 0.12);
         top: 10%;
         right: 10%;
         rotate: 45deg;
@@ -1230,9 +1236,9 @@ header.main-header {
         width: 300px;
         height: 300px;
         position: absolute;
-        bottom: -32%;
-        right: -32%;
-        background-color: rgba($color: #fafafa, $alpha: 0.17);
+        bottom: -37%;
+        right: -37%;
+        background-color: rgba($color: #fafafa, $alpha: 0.12);
         border-radius: 100%;
       }
       h3 {
@@ -1256,6 +1262,37 @@ header.main-header {
         border-radius: 25px;
         cursor: pointer;
       }
+    }
+  }
+}
+
+// SIGNUP.vue
+
+#signup {
+  .signup-inner h3 {
+    @include GradientText(var(--fromGradient), var(--toGradient));
+  }
+
+  .signup-form {
+    input:not([type="checkbox"]) {
+      background: linear-gradient(120deg, #eaafc826, #faaca826);
+    }
+
+    button {
+      background: linear-gradient(120deg, #eaafc8bf, #faaca8bf);
+    }
+  }
+
+  .signup-banner {
+    background: linear-gradient(120deg, #eaafc8bf, #faaca8bf);
+    &::after {
+      left: 10%;
+    }
+    &::before {
+      left: 80%;
+    }
+    .circle {
+      left: -37%;
     }
   }
 }
