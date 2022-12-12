@@ -1,10 +1,6 @@
 <template>
   <header class="main-header">
-    <form
-      class="header-overlay"
-      autocomplete="off"
-      @click="isCategorySubmenuOpen = false"
-    >
+    <form class="header-overlay" autocomplete="off">
       <div class="container">
         <h3 class="header-title">Explore and Find everything you need!</h3>
         <p class="header-subtitle">over <span>7,500,000</span> stuff</p>
@@ -125,7 +121,12 @@
 import ProductItem from "../components/UI/ProductItem.vue";
 import ArrowLeft from "../components/icons/Common/ArrowLeft.vue";
 import ArrowRight from "../components/icons/Common/ArrowRight.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+
+const searchValue = ref("");
+const setSearchInputStyle = computed(() =>
+  searchValue.value.trim() !== "" ? "bg-white" : ""
+);
 
 const subheaderItems = ref([
   {

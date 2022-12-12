@@ -146,7 +146,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 // Icons
 import Search from "../icons/Search.vue";
@@ -175,6 +175,19 @@ function toggleSearchInput() {
       searchInput.value.focus();
     }, 100);
 }
+
+const props = defineProps(["forceToggle"]);
+const emits = defineEmits(["onResetForceToggle"]);
+function watchForForceToggle(val) {
+  if (val) {
+    isCategorySubmenuOpen.value = false;
+    emits("onResetForceToggle", false);
+  }
+}
+watch(props, (newVal) => {
+  new watchForForceToggle(newVal);
+});
+
 const isCategorySubmenuOpen = ref(false);
 function toggleCategorySubmenu() {
   isCategorySubmenuOpen.value = !isCategorySubmenuOpen.value;
