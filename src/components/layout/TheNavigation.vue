@@ -120,7 +120,9 @@
                           class="brand-list-item"
                           v-for="subItem in item.subItems"
                         >
-                          <router-link to="/">{{ subItem }}</router-link>
+                          <router-link :to="{ name: 'productsList' }">{{
+                            subItem
+                          }}</router-link>
                         </li>
                       </ul>
                     </li>
@@ -162,9 +164,6 @@ import Fashion from "../icons/NavbarCategory/Fashion.vue";
 import Book from "../icons/NavbarCategory/Book.vue";
 
 const searchValue = ref("");
-const setSearchInputStyle = computed(() =>
-  searchValue.value.trim() !== "" ? "bg-white" : ""
-);
 
 const isSearchInputVisible = ref(false);
 const searchInput = ref(null);
@@ -185,7 +184,7 @@ function watchForForceToggle(val) {
   }
 }
 watch(props, (newVal) => {
-  new watchForForceToggle(newVal);
+  watchForForceToggle(newVal);
 });
 
 const isCategorySubmenuOpen = ref(false);
