@@ -53,11 +53,10 @@
       :options="{
         align: 'prev',
         circularFallback: 'linear',
-        moveType: 'snap',
+        moveType: 'freeScroll',
       }"
     >
       <product-item
-        class="panel"
         v-for="(prod, index) in discountedProducts"
         :key="index"
         :product-id="prod.ID"
@@ -104,24 +103,26 @@
         <!-- <div class="underline" :style="getNavbarUnderlineStyle"></div> -->
       </nav>
     </header>
-    <article class="some-stuff-list main-content">
-      <product-item
-        v-for="(prod, index) in discountProducts"
-        :key="index"
-        :product-id="prod.ID"
-        :product-name="prod.name"
-        :product-brand="prod.brand"
-        :product-img="prod.img"
-        :product-rating="prod.rating"
-        :product-review="prod.review"
-        :product-price="prod.price"
-        :is-liked="prod.isLiked"
-        :is-bookmarked="prod.isBookmarked"
-        :creator-company="prod.creatorCompany"
-        @on-product-like="likeProduct"
-        @on-product-bookmark="bookmarkProduct"
-      ></product-item>
-    </article>
+    <transition name="some-stuff">
+      <article class="some-stuff-list main-content" v-if="isStuffLoaded">
+        <product-item
+          v-for="(prod, index) in categorizedProducts"
+          :key="index"
+          :product-id="prod.ID"
+          :product-name="prod.name"
+          :product-brand="prod.brand"
+          :product-img="prod.img"
+          :product-rating="prod.rating"
+          :product-review="prod.review"
+          :product-price="prod.price"
+          :is-liked="prod.isLiked"
+          :is-bookmarked="prod.isBookmarked"
+          :creator-company="prod.creatorCompany"
+          @on-product-like="likeProduct"
+          @on-product-bookmark="bookmarkProduct"
+        ></product-item>
+      </article>
+    </transition>
   </section>
 </template>
 
@@ -194,96 +195,17 @@ const ourCategories = ref([
   },
 ]);
 
-// const discountProducts = ref([
-//   {
-//     ID: 1,
-//     name: "Gigabyte AX-370 Gaming K7",
-//     description: "GIGA-BYTE Technology Co",
-//     rating: 4.5,
-//     review: 14,
-//     lastPrice: 189,
-//     newPrice: 102,
-//     img: "Car.svg",
-//     isBookmarked: false,
-//     isLiked: false,
-//     creatorCompany: "gigabyte-technology-co",
-//   },
-//   {
-//     ID: 2,
-//     name: "Gigabyte AX-370 Gaming K7",
-//     description: "GIGA-BYTE Technology Co",
-//     rating: 4.5,
-//     review: 14,
-//     lastPrice: 189,
-//     newPrice: 102,
-//     img: "Car.svg",
-//     isBookmarked: false,
-//     isLiked: false,
-//     creatorCompany: "gigabyte-technology-co",
-//   },
-//   {
-//     ID: 3,
-//     name: "Gigabyte AX-370 Gaming K7",
-//     description: "GIGA-BYTE Technology Co",
-//     rating: 4.5,
-//     review: 14,
-//     lastPrice: 189,
-//     newPrice: 102,
-//     img: "Car.svg",
-//     isBookmarked: true,
-//     isLiked: false,
-//     creatorCompany: "gigabyte-technology-co",
-//   },
-//   {
-//     ID: 4,
-//     name: "Gigabyte AX-370 Gaming K7",
-//     description: "GIGA-BYTE Technology Co",
-//     rating: 4.2,
-//     review: 10,
-//     lastPrice: 95,
-//     newPrice: 58,
-//     img: "Supermarket.svg",
-//     isBookmarked: true,
-//     isLiked: true,
-//     creatorCompany: "gigabyte-technology-co",
-//   },
-//   {
-//     ID: 5,
-//     name: "Gigabyte AX-370 Gaming K7",
-//     description: "GIGA-BYTE Technology Co",
-//     rating: 4.2,
-//     review: 10,
-//     lastPrice: 95,
-//     newPrice: 58,
-//     img: "Supermarket.svg",
-//     isBookmarked: true,
-//     isLiked: true,
-//     creatorCompany: "gigabyte-technology-co",
-//   },
-//   {
-//     ID: 6,
-//     name: "Gigabyte AX-370 Gaming K7",
-//     description: "GIGA-BYTE Technology Co",
-//     rating: 4.2,
-//     review: 10,
-//     lastPrice: 95,
-//     newPrice: 58,
-//     img: "Supermarket.svg",
-//     isBookmarked: true,
-//     isLiked: true,
-//     creatorCompany: "gigabyte-technology-co",
-//   },
-// ]);
+const products = inject("products");
 
 function likeProduct(prodID) {
   // we don't have api yet, so will iterate though all objects
-  discountProducts.value.map((prod) => {
+  products.value.map((prod) => {
     if (prod.ID === prodID) prod.isLiked = !prod.isLiked;
   });
 }
 function bookmarkProduct(prodID) {
   // we don't have api yet, so will iterate though all objects
-  discountProducts.value.map((prod) => {
+  products.value.map((prod) => {
     if (prod.ID === prodID) prod.isBookmarked = !prod.isBookmarked;
   });
 }
@@ -317,13 +239,21 @@ const navElements = ref([
   },
 ]);
 
+const isStuffLoaded = ref(true);
 function changeNavbarUnderlineStyle(currentTab) {
   navActiveElem.value = currentTab;
+  isStuffLoaded.value = false;
+  setTimeout(() => {
+    isStuffLoaded.value = true;
+  }, 450);
 }
 
-const products = inject("products");
-
 const discountedProducts = computed(() => {
-  return products.value.filter((prod) => prod.discount);
+  const discountedProds = products.value.filter((prod) => prod.discount);
+  return discountedProds.slice(0, 9);
+});
+
+const categorizedProducts = computed(() => {
+  return products.value.filter((prod) => prod.cat === navActiveElem.value);
 });
 </script>

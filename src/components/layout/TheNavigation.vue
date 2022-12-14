@@ -149,7 +149,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 // Icons
 import Search from "../icons/Search.vue";
 import Category from "../icons/Category.vue";
@@ -185,6 +185,11 @@ function watchForForceToggle(val) {
 }
 watch(props, (newVal) => {
   watchForForceToggle(newVal);
+});
+
+const router = useRouter();
+router.afterEach(() => {
+  isCategorySubmenuOpen.value = false;
 });
 
 const isCategorySubmenuOpen = ref(false);

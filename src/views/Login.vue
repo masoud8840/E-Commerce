@@ -6,19 +6,19 @@
         <div class="login-with-social">
           <a href="#">
             <img
-              src="/public/images/Authentications/GooglePlus.svg"
+              src="/images/Authentications/GooglePlus.svg"
               alt="google-plus"
             />
           </a>
           <a href="#">
             <img
-              src="/public/images/Authentications/Facebook.svg"
+              src="/images/Authentications/Facebook.svg"
               alt="facebook"
             />
           </a>
           <a href="#">
             <img
-              src="/public/images/Authentications/Linkedin.svg"
+              src="/images/Authentications/Linkedin.svg"
               alt="linkedin"
             />
           </a>

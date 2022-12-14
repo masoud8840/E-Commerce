@@ -82,9 +82,13 @@ function shareProduct() {
 }
 
 const discountPrice = ref(0);
-const calculatedPercent = (
-  (props.productPrice * props.productDiscount) /
-  100
-).toFixed(2);
-discountPrice.value = props.productPrice - calculatedPercent;
+if (props.productDiscount) {
+  const calculatedPercent = (
+    (props.productPrice * props.productDiscount) /
+    100
+  ).toFixed(2);
+  discountPrice.value = props.productPrice - calculatedPercent;
+} else {
+  discountPrice.value = props.productPrice;
+}
 </script>

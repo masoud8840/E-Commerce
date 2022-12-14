@@ -643,7 +643,20 @@ header.main-header {
   article.some-stuff-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    // grid-template-rows: repeat(2, 1fr);
+  }
+
+  .some-stuff-enter-active,
+  .some-stuff-leave-active {
+    transition: opacity 0.45s ease-in-out;
+  }
+  .some-stuff-leave-to,
+  .some-stuff-enter-from {
+    opacity: 0;
+  }
+  .some-stuff-enter-to,
+  .some-stuff-leave-from {
+    opacity: 1;
   }
 }
 
