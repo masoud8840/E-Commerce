@@ -13,5 +13,8 @@ To run app on localhost run this command:
 npm run dev
 ```
 
-### Figma File Here
-[UI File](https://www.figma.com/file/CkSZ7JkNEqSTDmaIAbC0mX/E-Commerce)
+### UI Mockup
+[Open in Figma](https://www.figma.com/file/CkSZ7JkNEqSTDmaIAbC0mX/E-Commerce)
+
+### Live Preview
+Soon (when completed)...
